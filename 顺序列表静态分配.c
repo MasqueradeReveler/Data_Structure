@@ -15,7 +15,7 @@ void InitList(SeqList* L)
 
 PrintList(SeqList L)
 {
-	for (int i = 0; i < MaxSize; i++)
+	for (int i = 0; i < L.length; i++)
 		printf("data[%d]=%d\n", i, L.data[i]);
 }
 
