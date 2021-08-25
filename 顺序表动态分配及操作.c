@@ -76,6 +76,14 @@ PrintList(SeqList L)   //打印列表
 		printf("data[%d]=%d\n", i, L.data[i]);
 }
 
+void Empty(SeqList L)
+{
+	if (L.length = 0)
+		printf("此表为空\n");
+	else
+		printf("此表非空\n");
+}
+
 void CurrentSize(SeqList L)
 {
 	printf("目前表的容量为%d\n", L.MaxSize);
@@ -116,7 +124,7 @@ int main()
 			PrintList(L);
 			break;
 		case 8:
-			//Empty()
+			Empty(L);
 			break;
 		case 9:
 			//DestroyList()
