@@ -57,8 +57,8 @@ void InsertList(SeqList* L)   //添加元素
 		scanf("%d", &e);
 		printf("请输入要插入的位置:>");
 		scanf("%d", &i);
-		if (L->length >= L->MaxSize)
-			printf("队列已存满\n");
+		if (i - 1 > L->length)
+			printf("输入值非法\n");
 		else
 		{
 			for (int j = L->length; j >= i; j--)
@@ -70,15 +70,23 @@ void InsertList(SeqList* L)   //添加元素
 	}
 }
 
-int Insert(SeqList L, int e)
+void LocateElem(SeqList L)
 {
-	int i;
+	int i, e, a = 1;
+	printf("请输入要查找元素的值:>");
+	scanf("%d", &e);
 	for (i = 0; i < L.length; i++)
 	{
-		if (L.data == e)
-			return i + 1;
+		if (L.data[i] == e)
+		{
+			printf("该元素在列表中的第%d位\n", i + 1);
+			a = 0;
+		}
 	}
-	return 0;
+	if (a == 1)
+	{
+		printf("列表中没有该元素\n");
+	}
 }
 
 PrintList(SeqList L)   //打印列表
@@ -120,7 +128,7 @@ int main()
 			Length(L);
 			break;
 		case 3:
-			//LocateElem()
+			LocateElem(L);
 			break;
 		case 4:
 			//GetElem()
