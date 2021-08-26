@@ -70,6 +70,17 @@ void InsertList(SeqList* L)   //添加元素
 	}
 }
 
+int Insert(SeqList L, int e)
+{
+	int i;
+	for (i = 0; i < L.length; i++)
+	{
+		if (L.data == e)
+			return i + 1;
+	}
+	return 0;
+}
+
 PrintList(SeqList L)   //打印列表
 {
 	for (int i = 0; i < L.length; i++)
