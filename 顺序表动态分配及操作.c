@@ -25,9 +25,17 @@ void InitList(SeqList* L)  //初始化队列
 	L->MaxSize = InitSize;
 }
 
-void Length(SeqList L)
+void Length(SeqList L)  //求表长
 {
 	printf("此表的长度为%d\n", L.length);
+}
+
+void GetElem(SeqList L)
+{
+	int i;
+	printf("请输入要打印的元素序号:>");
+	scanf("%d", &i);
+	printf("第%d号元素为%d\n", i, L.data[i - 1]);
 }
 
 void IncreaseSize(SeqList* L)  //增加队列长度
@@ -70,7 +78,24 @@ void InsertList(SeqList* L)   //添加元素
 	}
 }
 
-void LocateElem(SeqList L)
+void ListDelete(SeqList* L, int* e)  //删除元素
+{
+	int i;
+	printf("请输入删除元素序号:>");
+	scanf("%d", &i);
+	if (i<1 || i>L->length)
+		printf("输入的值非法\n");
+	else
+	{
+		*e = L->data[i - 1];
+		for (int j = i; j < L->length; j++)
+			L->data[j - 1] = L->data[j];
+		L->length--;
+		printf("删除成功\n");
+	}
+}
+
+void LocateElem(SeqList L)  //按值查找
 {
 	int i, e, a = 1;
 	printf("请输入要查找元素的值:>");
@@ -97,7 +122,7 @@ PrintList(SeqList L)   //打印列表
 
 void Empty(SeqList L)
 {
-	if (L.length = 0)
+	if (L.length == 0)
 		printf("此表为空\n");
 	else
 		printf("此表非空\n");
@@ -108,9 +133,18 @@ void CurrentSize(SeqList L)
 	printf("目前表的容量为%d\n", L.MaxSize);
 }
 
+void DestroyList(SeqList* L)
+{
+	free(L->data);
+	L->data = NULL;
+	L->length = 0;
+	L->MaxSize = 0;
+	printf("销毁成功\n");
+}
+
 int main()
 {
-	int i;
+	int i, e;
 	SeqList L;
 	InitList(&L);
 	do
@@ -131,13 +165,13 @@ int main()
 			LocateElem(L);
 			break;
 		case 4:
-			//GetElem()
+			GetElem(L);
 			break;
 		case 5:
 			InsertList(&L);
 			break;
 		case 6:
-			//ListDelete()
+			ListDelete(&L, &e);
 			break;
 		case 7:
 			PrintList(L);
@@ -146,7 +180,7 @@ int main()
 			Empty(L);
 			break;
 		case 9:
-			//DestroyList()
+			DestroyList(&L);
 			break;
 		case 10:
 			IncreaseSize(&L);
