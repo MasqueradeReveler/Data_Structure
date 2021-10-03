@@ -35,3 +35,23 @@ void PostOrder(BiTree T)  //后序遍历
 		visit(T);
 	}
 }
+
+void InOrder2(BiTree)  //中序遍历非递归
+{
+	InitiStack(S);
+	BiTree p = T;
+	while (p || IsEmpty(S))
+	{
+		if (p)
+		{
+			Push(S, p);
+			p = p->lchild;
+		}
+		else
+		{
+			Pop(S, p);
+			visit(p);
+			p = p->rchild;
+		}
+	}
+}
