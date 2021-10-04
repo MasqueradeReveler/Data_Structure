@@ -57,7 +57,7 @@ void InOrder2(BiTree)  //中序遍历非递归
 }
 
 
-void PreOder2(BiTree T)
+void PreOder2(BiTree T)             //非递归算法先序遍历
 {
 	InitStack(S);               //初始化栈S
 	BiTree p = T;               //p为遍历指针
@@ -73,6 +73,54 @@ void PreOder2(BiTree T)
 		{
 			Pop(S, p);          //栈顶元素出栈
 			p = p->rchild;      //向右子树走，p赋值为当前节点右孩子
+		}
+	}
+}
+
+void InOrder2(BiTree T)        //非递归算法中序遍历
+{
+	InitStack(S);
+	BiTree p = T;
+	while (p || !IsEmpty(S))
+	{
+		if (p)
+		{
+			Push(S, p);
+			p = p->lchild;
+		}
+		else
+		{
+			Pop(S, p);
+			visit(p);
+			p = p->rchild;
+		}
+	}
+}
+
+void PostOrder2(BiTree T)        //非递归算法后序遍历
+{
+	InitStack(S);
+	BiTree p = T;
+	BiTree r = NULL;
+	while (p || !IsEmpty(S))
+	{
+		if (p)
+		{
+			Push(S, p);
+			p = p->lchild;
+		}
+		else
+		{
+			GetTop(S, p);               //读取栈顶元素（非出栈）
+			if (p->rchild && p->rchild != r)  //右子树存在且未被访问过
+				p = p->rchild;
+			else
+			{
+				Pop(S, p);
+				visit(p);
+				r = p;           //记录最近访问过的节点
+				p = NULL;        //节点访问完后，重置p指针
+			}
 		}
 	}
 }
