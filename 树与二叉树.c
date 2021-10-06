@@ -124,3 +124,19 @@ void PostOrder2(BiTree T)        //非递归算法后序遍历
 		}
 	}
 }
+
+void LevelOrder(BiTree T)
+{
+	InitQueue(Q);             //初始化辅助队列
+	BiTree p;
+	EnQueue(Q, T);            //根节点入队
+	while (!IsEmpty(Q))       //队列非空则循环
+	{
+		DeQueue(Q, p);        //队头结点出队
+		visit(p);
+		if (p->lchild != NULL)
+			EnQueue(Q, p->lchild);  //左子树非空则左子树根节点入队
+		if (p->rchild != NULL)
+			EnQueue(Q, p->rchild);  //右子树非空则右子树根节点入队
+	}
+}
