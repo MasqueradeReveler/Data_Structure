@@ -48,6 +48,27 @@ void CreateInThread(ThreadTree T)
 	}
 }
 
+ThreadNode* Firstnode(ThreadNode* p)
+{
+	while (p->ltag == 0)
+		p = p->lchild;   //最左下节点（不一定是叶节点）
+	return p;
+}
+
+ThreadNode* Nextnode(ThreadNode* p)
+{
+	if (p->rtag == 0)
+		return Firstnode(p->rchild);
+	else
+		return p->rchild;   //rtag==1直接返回后继续线索
+}
+
+void Inorder(ThreadNode* T)   //中序二叉树的遍历
+{
+	for (ThreadNode* p = Firstnode(T); p != NULL; p = Nextnode(p))
+		visit(p);
+}
+
 int main()
 {
 	ThreadTree s;
