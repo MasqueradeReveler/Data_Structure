@@ -27,7 +27,7 @@ void InThread(ThreadNode* p, ThreadNode** pre)  //中序线索二叉树构建
 	}
 }
 
-void InitThreadNode(ThreadNode* p)
+void InitThreadNode(ThreadNode* p)    //初始化树节点
 {
 	p->data = 0;
 	p->lchild = NULL;
@@ -37,7 +37,7 @@ void InitThreadNode(ThreadNode* p)
 }
 
 
-void CreateInThread(ThreadTree T)
+void CreateInThread(ThreadTree T)    //建立中序线索二叉树
 {
 	ThreadNode *pre = NULL;
 	if (T != NULL)
@@ -48,14 +48,14 @@ void CreateInThread(ThreadTree T)
 	}
 }
 
-ThreadNode* Firstnode(ThreadNode* p)
+ThreadNode* Firstnode(ThreadNode* p)    //找出中序遍历的第一个节点
 {
 	while (p->ltag == 0)
 		p = p->lchild;   //最左下节点（不一定是叶节点）
 	return p;
 }
 
-ThreadNode* Nextnode(ThreadNode* p)
+ThreadNode* Nextnode(ThreadNode* p)    //中序遍历的下一个节点
 {
 	if (p->rtag == 0)
 		return Firstnode(p->rchild);
