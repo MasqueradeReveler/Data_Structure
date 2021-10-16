@@ -31,3 +31,38 @@ typedef struct
 	AdjList vertices;         //邻接表
 	int vexnum, arcnum;       //图的顶点数和弧数
 }ALGraph;                     //ALGraph是邻接表存储的图类型
+
+
+
+int visited[MaxVertexNum];              //访问标记数组
+void BFSTraverse(MGraph G)              //对图G进行广度优先遍历
+{
+	
+	for (int i = 0; i < G.vexnum; ++i)
+	{
+		visited[i] = 0;					//访问标记数组初始化
+		InitQueue(Q);					//初始化队列Q
+		for (i = 0; i < G.vexnum; ++i)  //从0号顶点开始遍历
+			if (!visited[i])            //对每个连通分量调用一次BFS
+				BFS(G, i);				//v(i)未访问过，从v(i)开始BFS
+	}
+}
+	
+void BFS(MGraph G, int v)				//从顶点v出发，广度优先遍历图G
+{
+	visit(v);							//访问初始节点v
+	visited[v] = 1;						//对v做已访问标记
+	EnQueue(Q, v);						//顶点v入队列Q
+	while (IsEmpty(Q)!=0)
+	{
+		DeQueue(Q, v);					//顶点v出队列
+		for (int w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor(G, v, w))
+										//检测v的所有邻接点
+			if (!visited[w])			//w为v尚未访问的邻接点
+			{
+				visit(w);				//访问顶点w
+				visited[w] = 1;         //对w做已访问标记
+				EnQueue(Q, w);			//顶点w入队列
+			}
+	}
+}
