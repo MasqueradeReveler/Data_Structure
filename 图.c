@@ -66,3 +66,24 @@ void BFS(MGraph G, int v)				//从顶点v出发，广度优先遍历图G
 			}
 	}
 }
+
+void BFS_MIN_Distance(MGraph G, int u)  //广度优先求解最短路径
+{
+	int d[MaxVertexNum];                //d[i]表示从u到i的最短路径
+	for (int i = 0; i < G.vexnum; i++)
+		d[i]=-1;						//初始化路径长度
+	visited[u] = 1;
+	d[u] = 0;
+	EnQueue(Q, u);
+	while (IsEmpty(Q) != 0)				//BSF算法主过程
+	{
+		DeQueue(Q, u);					//元素u出队
+		for(int w=FirstNeighbor(G,u);w>=0;w=NextNeighbor(G,u,w))
+			if (!visited[w])			//w为u的尚未访问的邻接顶点
+			{
+				visited[w] = 1;			//设已访问标记
+				d[w] = d[u] + 1;		//路径长度加1
+				EnQueue(Q, w);			//顶点w入队
+			}
+	}
+}
