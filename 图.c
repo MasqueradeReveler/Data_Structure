@@ -88,21 +88,21 @@ void BFS_MIN_Distance(MGraph G, int u)  //广度优先求解最短路径
 	}
 }
 
-int visited[MaxVertexNum];
-void DFSTraverse(MGraph G)
+int visited[MaxVertexNum];           //访问标记数组
+void DFSTraverse(MGraph G)           //对图G进行深度优先遍历
 {
 	for (int v = 0; v < G.vexnum; ++v)
-		visited[v] = 0;
-	for (int v = 0; v < G.vexnum; ++v)
+		visited[v] = 0;      //初始化已访问的标记
+	for (int v = 0; v < G.vexnum; ++v)  //从0开始遍历
 		if (!visited[v])
 			DFS(G, v);
 }
-void DFS(MGraph G, int v)
+void DFS(MGraph G, int v) 	     //从顶点v出发，深度优先遍历图G
 {
 	visit(v);
 	visited[v] = 1;
 	for (int w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor)
-		if (!visited[w])
+		if (!visited[w])      //w为v的尚未访问的结点
 		{
 			DFS(G, w);
 		}
