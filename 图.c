@@ -101,7 +101,7 @@ void DFS(MGraph G, int v) 	     //从顶点v出发，深度优先遍历图G
 {
 	visit(v);
 	visited[v] = 1;
-	for (int w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor)
+	for (int w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor(G,v,w))
 		if (!visited[w])      //w为v的尚未访问的结点
 		{
 			DFS(G, w);
