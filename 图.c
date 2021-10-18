@@ -87,3 +87,23 @@ void BFS_MIN_Distance(MGraph G, int u)  //广度优先求解最短路径
 			}
 	}
 }
+
+int visited[MaxVertexNum];
+void DFSTraverse(MGraph G)
+{
+	for (int v = 0; v < G.vexnum; ++v)
+		visited[v] = 0;
+	for (int v = 0; v < G.vexnum; ++v)
+		if (!visited[v])
+			DFS(G, v);
+}
+void DFS(MGraph G, int v)
+{
+	visit(v);
+	visited[v] = 1;
+	for (int w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor)
+		if (!visited[w])
+		{
+			DFS(G, w);
+		}
+}
