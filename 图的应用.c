@@ -19,3 +19,18 @@ void Prim(G,T)    //Prim算法
     U=U∪{v};      //顶点归入树
   }
 }
+
+void Kruskal(V,T)   //Kruskal算法
+{
+  T=V;                    //初始化树T，仅含定点
+  numS=n;                 //连通分量数
+  while(numS>1)           //若连通分量大于1
+  {
+     从E中取出权值最小的边；
+    if(v和u属于T中不同的连通分量)
+    {
+      T=T∪{(v,u)};        //将此边加入生成树中
+      numS--;              //连通分量数减1
+    }
+  }
+}
