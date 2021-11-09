@@ -92,6 +92,22 @@ int del_s_t(SqList* L, int s, int t)
 }
 
 
+//6.从有序顺序表中删除所有其值重复的元素，使表中所有元素的值均不同。
+int del_same(SqList* L)
+{
+	if (L->length == 0)
+		return 0;
+	int i, j;				//i存储第一个不相同的元素，j为工作指针
+	for (i = 0, j = 1; j < L->length; j++)
+	{
+		if (L->data[i] != L->data[j])
+			L->data[++i] = L->data[j];
+	}
+	L->length = i + 1;
+	return 1;
+}
+
+
 /*10.【2010统考真题】设将n（n>1）个整数存放到一维数组R中。设计一个在时间和空间两方面都尽可能高效的算法。将R中保存的序列循环左移p（0<p<n）个位置，即将R中的数据由（X0,X1…，Xn-1变换为（Xp,Xp+1,…，Xn-1,X0,X1,…,Xp-1）.要求：
 1）给出算法的基本设计思想
 2）根据设计思想，采用C或C艹或JaⅦa语言描述算法，关键之处给出注释。
