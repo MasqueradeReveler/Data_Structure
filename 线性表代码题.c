@@ -116,7 +116,7 @@ int del_same(SqList* L)
 void reverse(int R[], int from, int to)
 {
 	int i, tmp;
-	for (i = 0; i < (to - from) / 2; i++)
+	for (i = 0; i < (to - from + 1) / 2; i++)
 	{
 		tmp = R[from + i];
 		R[from + i] = R[to - i];
