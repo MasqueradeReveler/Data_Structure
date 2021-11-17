@@ -108,6 +108,52 @@ int del_same(SqList* L)
 }
 
 
+//7.将两个有序顺序表合并为一个新的有序顺序表，并由函数返回结果顺序表。
+int merge(SqList A, SqList B, SqList* C)
+//将顺序表A与B合并为一个新的顺序表C
+{
+	if (A.length + B.length > MaxSize)
+		return 0;
+	int i = 0, j = 0, k = 0;
+	while (i < A.length && j < B.length)	//循环，两两比较，小的元素进入结果表
+	{
+		if (A.data[i] <= B.data[j])
+			C->data[k++] = A.data[i++];
+		else
+			C->data[k++] = B.data[j++];
+	}
+	while (i < A.length)					//剩余的顺序表直接加入最后
+		C->data[k++] = A.data[i++];
+	while (j < B.length)
+		C->data[k++] = B.data[j++];
+	C->length = k;
+	return 1;
+}
+
+
+//8.已知在一维数组A[m+n]中依次存放两个线性表（a1,a2,a3,…，am）和（b1，b2,b3,…，bn）。试编写一个函数，将数组中两个顺序表的位置互换，即将（b1，b2b3，…，bn）放在（a1，a2a3，…，an的前面。
+typedef int Datatype;
+void reverse_array(int A[], int left, int right, int arraysize)
+{
+	if (left >= right || right >= arraysize)
+		return;
+	int mid = (left + right) / 2;
+	for (int i = 0; i <= mid - left; i++)
+	{
+		Datatype tmp = A[left + i];
+		A[left + i] = A[right - i];
+		A[right - i] = tmp;
+	}
+}
+
+void Exchange(Datatype A[], int m, int n, int arraysize)
+{
+	reverse_array(A, 0, m + n - 1, arraysize);
+	reverse_array(A, 0, n - 1, arraysize);
+	reverse_array(A, n, m + n - 1, arraysize);
+}
+
+
 /*10.【2010统考真题】设将n（n>1）个整数存放到一维数组R中。设计一个在时间和空间两方面都尽可能高效的算法。将R中保存的序列循环左移p（0<p<n）个位置，即将R中的数据由（X0,X1…，Xn-1变换为（Xp,Xp+1,…，Xn-1,X0,X1,…,Xp-1）.要求：
 1）给出算法的基本设计思想
 2）根据设计思想，采用C或C艹或JaⅦa语言描述算法，关键之处给出注释。
