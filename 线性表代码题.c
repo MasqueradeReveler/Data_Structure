@@ -154,6 +154,35 @@ void Exchange(Datatype A[], int m, int n, int arraysize)
 }
 
 
+//9.线性表(a1a2a，…，an）中的元素递增有序且按顺序存储于计算机内。要求设计一算法，完成用最少时间在表中查找数值为x的元素，若找到则将其与后继元素位置相交换，若找不到则将其插入表中并使表中元素仍递增有序
+void SearchExchangeInsert(int A[], int x)
+{
+	int low = 0, high = MaxSize - 1, mid, t, i;
+	while (low <= high)
+	{
+		mid = (low + high) / 2;
+		if (A[mid] == x)
+			break;
+		else if (A[mid] < x)
+			low = mid + 1;
+		else
+			high = mid - 1;
+	}
+	if (A[mid] == x && mid != MaxSize - 1)
+	{
+		t = A[mid];
+		A[mid] = A[mid + 1];
+		A[mid] = t;
+	}
+	if (low > high)
+	{
+		for ( i = MaxSize - 1; i > high; i--)
+			A[i + 1] = A[i];
+		A[i + 1] = x;
+	}
+}
+
+
 /*10.【2010统考真题】设将n（n>1）个整数存放到一维数组R中。设计一个在时间和空间两方面都尽可能高效的算法。将R中保存的序列循环左移p（0<p<n）个位置，即将R中的数据由（X0,X1…，Xn-1变换为（Xp,Xp+1,…，Xn-1,X0,X1,…,Xp-1）.要求：
 1）给出算法的基本设计思想
 2）根据设计思想，采用C或C艹或JaⅦa语言描述算法，关键之处给出注释。
@@ -222,3 +251,6 @@ int M_Search(int A[], int B[], int n)
 	return A[s1] < B[s2] ? A[s1] : B[s2];
 }
 //时间复杂度O(log2n) 空间复杂度O(1)
+
+
+
