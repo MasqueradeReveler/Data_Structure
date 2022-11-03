@@ -23,6 +23,7 @@ void InitList(SeqList* L)  //初始化队列
 	L->data = (int*)malloc(InitSize * sizeof(int));
 	L->length = 0;
 	L->MaxSize = InitSize;
+	printf("初始化成功！\n");
 }
 
 void Length(SeqList L)  //求表长
@@ -156,7 +157,6 @@ int main()
 		{
 		case 1:
 			InitList(&L);
-			printf("初始化成功！\n");
 			break;
 		case 2:
 			Length(L);
