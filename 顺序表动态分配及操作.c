@@ -65,7 +65,7 @@ void InsertList(SeqList* L)   //添加元素
 		scanf("%d", &e);
 		printf("请输入要插入的位置:>");
 		scanf("%d", &i);
-		if (i - 1 > L->length)
+		if (i - 1 > L->length || i < 1)
 			printf("输入值非法\n");
 		else
 		{
